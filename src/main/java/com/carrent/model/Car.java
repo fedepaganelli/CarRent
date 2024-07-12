@@ -3,22 +3,22 @@ package com.carrent.model;
 
 
     public class Car {
-        private String manifacturer;
+        private String manufacturer;
         private String model;
         private double dailyCost;
 
-        public Car(String manifacturer, String model, double dailyCost) {
-            this.manifacturer= manifacturer;
+        public Car(String manufacturer, String model, double dailyCost) {
+            this.manufacturer= manufacturer;
             this.model = model;
             this.dailyCost = dailyCost;
         }
 
-        public String getManifacturer() {
-            return manifacturer;
+        public String getManufacturer() {
+            return manufacturer;
         }
 
-        public void setManifacturer(String manifacturer) {
-            this.manifacturer = manifacturer;
+        public void setManufacturer(String manufacturer) {
+            this.manufacturer = manufacturer;
         }
 
         public String getModel() {

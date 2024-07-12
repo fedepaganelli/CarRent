@@ -11,10 +11,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class Controller {
     @FXML private TableView<Car> carTable;
-    @FXML private TableColumn<Car, String> manifacturerColumn;
+    @FXML private TableColumn<Car, String> manufacturerColumn;
     @FXML private TableColumn<Car, String> modelColumn;
     @FXML private TableColumn<Car, Double> dailyCostColumn;
-    @FXML private TextField manifacturerField;
+    @FXML private TextField manufacturerField;
     @FXML private TextField modelField;
     @FXML private TextField dailyCostField;
 
@@ -22,7 +22,7 @@ public class Controller {
 
     @FXML
     private void initialize() {
-        manifacturerColumn.setCellValueFactory(new PropertyValueFactory<>("manifacturer"));
+        manufacturerColumn.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
         modelColumn.setCellValueFactory(new PropertyValueFactory<>("model"));
         dailyCostColumn.setCellValueFactory(new PropertyValueFactory<>("dailyCost"));
         carTable.setItems(carList);
@@ -30,12 +30,12 @@ public class Controller {
 
     @FXML
     private void addCar() {
-        String make = manifacturerField.getText();
+        String make = manufacturerField.getText();
         String model = modelField.getText();
         double dailyCost = Double.parseDouble(dailyCostField.getText());
         Car car = new Car(make, model, dailyCost);
         carList.add(car);
-        manifacturerField.clear();
+        manufacturerField.clear();
         modelField.clear();
         dailyCostField.clear();
     }
