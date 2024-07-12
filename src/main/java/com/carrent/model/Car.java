@@ -7,18 +7,15 @@ public class Car {
     private double dailyCost;
     private String transmission; // automatico o manuale
     private int seats;
-    private double length;
-    private double width;
+    private String size;
 
-
-    public Car(String manufacturer, String model, double dailyCost, String transmission, int seats, double length, double width) {
+    public Car(String manufacturer, String model, double dailyCost, String transmission, int seats,String size) {
         this.manufacturer = manufacturer;
         this.model = model;
         this.dailyCost = dailyCost;
         this.transmission = transmission;
         this.seats = seats;
-        this.length = length;
-        this.width = width;
+        this.size=size;
     }
 
     public String getManufacturer() {
@@ -61,20 +58,13 @@ public class Car {
         this.seats = seats;
     }
 
-    public double getLength() {
-        return length;
+
+    public String getSize() {
+        return size;
     }
 
-    public void setLength(double length) {
-        this.length = length;
-    }
-
-    public double getWidth() {
-        return width;
-    }
-
-    public void setWidth(double width) {
-        this.width = width;
+    public void setSize(String size) {
+        this.size = size;
     }
 }
 

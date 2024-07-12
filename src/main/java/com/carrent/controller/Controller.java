@@ -23,9 +23,7 @@ public class Controller {
     @FXML
     private TableColumn<Car, Integer> seatsColumn;
     @FXML
-    private TableColumn<Car, Double> lengthColumn;
-    @FXML
-    private TableColumn<Car, Double> widthColumn;
+    private TableColumn<Car, String> sizeColumn;
     @FXML
     private TextField manufacturerField;
     @FXML
@@ -37,9 +35,7 @@ public class Controller {
     @FXML
     private TextField seatsField;
     @FXML
-    private TextField lengthField;
-    @FXML
-    private TextField widthField;
+    private TextField sizeField;
 
     private ObservableList<Car> carList = FXCollections.observableArrayList();
 
@@ -50,8 +46,7 @@ public class Controller {
         dailyCostColumn.setCellValueFactory(new PropertyValueFactory<>("dailyCost"));
         transmissionColumn.setCellValueFactory(new PropertyValueFactory<>("transmission"));
         seatsColumn.setCellValueFactory(new PropertyValueFactory<>("seats"));
-        lengthColumn.setCellValueFactory(new PropertyValueFactory<>("length"));
-        widthColumn.setCellValueFactory(new PropertyValueFactory<>("width"));
+        sizeColumn.setCellValueFactory(new PropertyValueFactory<>("size"));
 
         carTable.setItems(carList);
     }
@@ -63,10 +58,9 @@ public class Controller {
         double dailyCost = Double.parseDouble(dailyCostField.getText());
         String transmission = transmissionField.getText();
         int seats = Integer.parseInt(seatsField.getText());
-        double length = Double.parseDouble(lengthField.getText());
-        double width = Double.parseDouble(widthField.getText());
+        String size = sizeField.getText();
 
-        Car car = new Car(manufacturer, model, dailyCost, transmission, seats, length, width);
+        Car car = new Car(manufacturer, model, dailyCost, transmission, seats, size);
         carList.add(car);
 
         manufacturerField.clear();
@@ -74,7 +68,6 @@ public class Controller {
         dailyCostField.clear();
         transmissionField.clear();
         seatsField.clear();
-        lengthField.clear();
-        widthField.clear();
+        sizeField.clear();
     }
 }

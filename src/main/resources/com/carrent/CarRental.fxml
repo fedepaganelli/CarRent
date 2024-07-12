@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="com.carrent.controller.Controller">
-   <Pane prefHeight="102.0" prefWidth="1120.0">
-      <children>
-         <Button layoutX="1061.0" layoutY="77.0" mnemonicParsing="false" text="Add Car" />
-      </children>
-   </Pane>
+    <Pane prefHeight="102.0" prefWidth="1120.0">
+        <children>
+            <Button layoutX="1061.0" layoutY="77.0" mnemonicParsing="false" text="Add Car" onAction="#addCar"/>
+        </children>
+    </Pane>
     <TableView fx:id="carTable" prefHeight="395.0" prefWidth="1120.0">
         <columns>
             <TableColumn fx:id="manufacturerColumn" text="Manufacturer" />
@@ -21,8 +21,7 @@
             <TableColumn fx:id="dailyCostColumn" text="Daily Cost" />
             <TableColumn fx:id="transmissionColumn" text="Transmission" />
             <TableColumn fx:id="seatsColumn" text="Seats" />
-            <TableColumn fx:id="lengthColumn" text="Length" />
-            <TableColumn fx:id="widthColumn" prefWidth="73.5999755859375" text="Width" />
+            <TableColumn fx:id="sizeColumn" text="Size" />
         </columns>
     </TableView>
     <HBox>
@@ -31,8 +30,7 @@
         <TextField fx:id="dailyCostField" promptText="Daily Cost" />
         <TextField fx:id="transmissionField" promptText="Transmission" />
         <TextField fx:id="seatsField" promptText="Seats" />
-        <TextField fx:id="lengthField" promptText="Length" />
-        <TextField fx:id="widthField" promptText="Width" />
-        <Button onAction="#addCar" text="Search Car" />
+        <TextField fx:id="sizeField" promptText="Size" />
+        <Button text="Search Car" />
     </HBox>
 </VBox>
