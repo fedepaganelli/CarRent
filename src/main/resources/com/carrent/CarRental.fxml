@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.carrent.controller.Controller">
+    <TableView fx:id="carTable">
+        <columns>
+            <TableColumn fx:id="manifacturerColumn" text="Manifacturer" />
+            <TableColumn fx:id="modelColumn" text="Model" />
+            <TableColumn fx:id="dailyCostColumn" text="Daily Cost" />
+        </columns>
+    </TableView>
+    <HBox>
+        <TextField fx:id="manifacturerField" promptText="Make"/>
+        <TextField fx:id="modelField" promptText="Model"/>
+        <TextField fx:id="dailyCostField" promptText="Daily Cost"/>
+        <Button text="Add Car" onAction="#addCar"/>
+    </HBox>
+</VBox>
