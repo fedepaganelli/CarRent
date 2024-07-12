@@ -12,7 +12,7 @@
         </columns>
     </TableView>
     <HBox>
-        <TextField fx:id="manifacturerField" promptText="Make"/>
+        <TextField fx:id="manifacturerField" promptText="Manifacturer"/>
         <TextField fx:id="modelField" promptText="Model"/>
         <TextField fx:id="dailyCostField" promptText="Daily Cost"/>
         <Button text="Add Car" onAction="#addCar"/>
