@@ -52,20 +52,23 @@ public class Controller {
         seatsColumn.setCellValueFactory(new PropertyValueFactory<>("seats"));
         lengthColumn.setCellValueFactory(new PropertyValueFactory<>("length"));
         widthColumn.setCellValueFactory(new PropertyValueFactory<>("width"));
+
         carTable.setItems(carList);
     }
 
     @FXML
     private void addCar() {
-        String make = manufacturerField.getText();
+        String manufacturer = manufacturerField.getText();
         String model = modelField.getText();
         double dailyCost = Double.parseDouble(dailyCostField.getText());
         String transmission = transmissionField.getText();
         int seats = Integer.parseInt(seatsField.getText());
         double length = Double.parseDouble(lengthField.getText());
         double width = Double.parseDouble(widthField.getText());
-        Car car = new Car(make, model, dailyCost, transmission, seats, length, width);
+
+        Car car = new Car(manufacturer, model, dailyCost, transmission, seats, length, width);
         carList.add(car);
+
         manufacturerField.clear();
         modelField.clear();
         dailyCostField.clear();
