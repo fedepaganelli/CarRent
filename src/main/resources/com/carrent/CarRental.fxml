@@ -11,7 +11,7 @@
 <VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="com.carrent.controller.Controller">
     <Pane prefHeight="102.0" prefWidth="1120.0">
         <children>
-            <Button layoutX="1061.0" layoutY="77.0" mnemonicParsing="false" text="Add Car" onAction="#addCar"/>
+            <Button layoutX="1061.0" layoutY="77.0" mnemonicParsing="false" text="Add Car" onAction="#handleAddCar"/>
         </children>
     </Pane>
     <TableView fx:id="carTable" prefHeight="395.0" prefWidth="1120.0">
