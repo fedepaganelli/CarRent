@@ -8,10 +8,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="com.carrent.controller.Controller">
+<VBox xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.carrent.controller.Controller">
     <Pane prefHeight="102.0" prefWidth="1120.0">
         <children>
-            <Button layoutX="1061.0" layoutY="77.0" mnemonicParsing="false" text="Add Car" onAction="#handleAddCar"/>
+            <Button alignment="BOTTOM_LEFT" layoutX="1046.0" layoutY="76.0" mnemonicParsing="false" onAction="#handleAddCar" text="Add Car" />
+         <Button layoutX="959.0" layoutY="76.0" mnemonicParsing="false" onAction="#handleRentCar" text="Rent a Car" />
         </children>
     </Pane>
     <TableView fx:id="carTable" prefHeight="395.0" prefWidth="1120.0">

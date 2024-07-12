@@ -5,10 +5,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -53,6 +54,19 @@ public class Controller {
         sizeColumn.setCellValueFactory(new PropertyValueFactory<>("size"));
 
         carTable.setItems(carList);
+
+        // Aggiungi un listener per gestire la selezione della riga nella tabella
+        carTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                // Imposta i campi di input con i valori dell'auto selezionata
+                manufacturerField.setText(newValue.getManufacturer());
+                modelField.setText(newValue.getModel());
+                dailyCostField.setText(String.valueOf(newValue.getDailyCost()));
+                transmissionField.setText(newValue.getTransmission());
+                seatsField.setText(String.valueOf(newValue.getSeats()));
+                sizeField.setText(newValue.getSize());
+            }
+        });
     }
 
     @FXML
@@ -97,6 +111,42 @@ public class Controller {
                 transmissionField.clear();
                 seatsField.clear();
                 sizeField.clear();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Gestione dell'errore nel caricamento del dialogo
+        }
+    }
+
+    @FXML
+    private void handleRentCar() {
+        try {
+            // Rimuovi le macchine dalla lista delle auto disponibili (se necessario)
+            // Esempio: carList.clear();
+
+            // Carica il file FXML del dialogo di noleggio
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("RentCar.fxml"));
+            VBox rentCarPane = loader.load();
+
+            // Crea una nuova finestra di dialogo
+            Stage rentCarStage = new Stage();
+            rentCarStage.setTitle("Rent Car");
+            rentCarStage.initOwner(carTable.getScene().getWindow()); // Imposta la finestra principale come proprietaria
+            rentCarStage.setScene(new Scene(rentCarPane));
+
+            // Ottieni il controller del dialogo di noleggio e passagli l'auto selezionata
+            RentCarController rentCarController = loader.getController();
+            rentCarController.setDialogStage(rentCarStage);
+            rentCarController.setSelectedCar(carTable.getSelectionModel().getSelectedItem());
+
+            // Mostra il dialogo e attendi che l'utente interagisca
+            rentCarStage.showAndWait();
+
+            // Se l'utente ha confermato il noleggio, gestisci di conseguenza
+            if (rentCarController.isRentClicked()) {
+                // Esempio di output (da personalizzare con la tua logica di noleggio)
+                System.out.println("Car rented successfully!");
             }
 
         } catch (IOException e) {
