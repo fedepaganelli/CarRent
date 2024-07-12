@@ -1,28 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.carrent.controller.Controller">
-    <TableView fx:id="carTable">
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="com.carrent.controller.Controller">
+   <Pane prefHeight="102.0" prefWidth="1120.0">
+      <children>
+         <Button layoutX="1061.0" layoutY="77.0" mnemonicParsing="false" text="Add Car" />
+      </children>
+   </Pane>
+    <TableView fx:id="carTable" prefHeight="395.0" prefWidth="1120.0">
         <columns>
-            <TableColumn fx:id="manufacturerColumn" text="Manufacturer"/>
-            <TableColumn fx:id="modelColumn" text="Model"/>
-            <TableColumn fx:id="dailyCostColumn" text="Daily Cost"/>
-            <TableColumn fx:id="transmissionColumn" text="Transmission"/>
-            <TableColumn fx:id="seatsColumn" text="Seats"/>
-            <TableColumn fx:id="lengthColumn" text="Length"/>
-            <TableColumn fx:id="widthColumn" text="Width"/>
+            <TableColumn fx:id="manufacturerColumn" text="Manufacturer" />
+            <TableColumn fx:id="modelColumn" text="Model" />
+            <TableColumn fx:id="dailyCostColumn" text="Daily Cost" />
+            <TableColumn fx:id="transmissionColumn" text="Transmission" />
+            <TableColumn fx:id="seatsColumn" text="Seats" />
+            <TableColumn fx:id="lengthColumn" text="Length" />
+            <TableColumn fx:id="widthColumn" prefWidth="73.5999755859375" text="Width" />
         </columns>
     </TableView>
     <HBox>
-        <TextField fx:id="manufacturerField" promptText="Manufacturer"/>
-        <TextField fx:id="modelField" promptText="Model"/>
-        <TextField fx:id="dailyCostField" promptText="Daily Cost"/>
-        <TextField fx:id="transmissionField" promptText="Transmission"/>
-        <TextField fx:id="seatsField" promptText="Seats"/>
-        <TextField fx:id="lengthField" promptText="Length"/>
-        <TextField fx:id="widthField" promptText="Width"/>
-        <Button text="Add Car" onAction="#addCar"/>
+        <TextField fx:id="manufacturerField" promptText="Manufacturer" />
+        <TextField fx:id="modelField" promptText="Model" />
+        <TextField fx:id="dailyCostField" promptText="Daily Cost" />
+        <TextField fx:id="transmissionField" promptText="Transmission" />
+        <TextField fx:id="seatsField" promptText="Seats" />
+        <TextField fx:id="lengthField" promptText="Length" />
+        <TextField fx:id="widthField" promptText="Width" />
+        <Button onAction="#addCar" text="Search Car" />
     </HBox>
 </VBox>
