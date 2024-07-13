@@ -92,18 +92,6 @@ public class Controller {
         // Aggiungi macchine di default
         addDefaultCars();
 
-        // Aggiungi un listener per gestire la selezione della riga nella tabella
-        carTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                // Imposta i campi di input con i valori dell'auto selezionata
-                manufacturerField.setText(newValue.getManufacturer());
-                modelField.setText(newValue.getModel());
-                dailyCostField.setText(String.valueOf(newValue.getDailyCost()));
-                transmissionField.setText(newValue.getTransmission());
-                seatsField.setText(String.valueOf(newValue.getSeats()));
-                sizeField.setText(newValue.getSize());
-            }
-        });
     }
 
 
