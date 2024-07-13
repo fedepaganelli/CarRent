@@ -1,6 +1,11 @@
 package com.carrent.model;
 
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+
+
 public class Car {
     private String manufacturer;
     private String model;
@@ -9,9 +14,9 @@ public class Car {
     private int seats;
     private String size;
     private boolean isRented; // Aggiunto attributo
+    private ImageView logo; // Aggiunto campo per il logo
 
-
-    public Car(String manufacturer, String model, double dailyCost, String transmission, int seats, String size) {
+    public Car(String manufacturer, String model, double dailyCost, String transmission, int seats, String size, String logoPath) {
         this.manufacturer = manufacturer;
         this.model = model;
         this.dailyCost = dailyCost;
@@ -19,6 +24,7 @@ public class Car {
         this.seats = seats;
         this.size = size;
         this.isRented = false; // Inizialmente l'auto non è noleggiata
+        this.logo = new ImageView(new Image(getClass().getResourceAsStream(logoPath))); // Imposta il logo
     }
 
     public String getManufacturer() {
@@ -78,7 +84,18 @@ public class Car {
         isRented = rented;
     }
 
+    public ImageView getLogo() {
+        return logo;
+    }
+
+    public void setLogo(ImageView logo) {
+        this.logo = logo;
+    }
+
     public String toString() {
         return manufacturer + " " + model;
     }
+
+
+
 }

@@ -13,13 +13,13 @@ public class AddCarDialogController {
     private DialogPane dialogPane;
 
     @FXML
-    private TextField manufacturerField;
-
-    @FXML
     private TextField modelField;
 
     @FXML
     private TextField dailyCostField;
+
+    @FXML
+    private ComboBox<String> manufacturerComboBox;
 
     @FXML
     private ComboBox<String> transmissionComboBox;
@@ -54,16 +54,16 @@ public class AddCarDialogController {
         dialogStage.close();
     }
 
-    public String getManufacturer() {
-        return manufacturerField.getText();
-    }
-
     public String getModel() {
         return modelField.getText();
     }
 
     public double getDailyCost() {
         return Double.parseDouble(dailyCostField.getText());
+    }
+
+    public String getManufacturer() {
+        return manufacturerComboBox.getValue();
     }
 
     public String getTransmission() {

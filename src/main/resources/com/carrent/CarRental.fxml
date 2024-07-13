@@ -4,6 +4,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -17,17 +19,18 @@
     </Pane>
     <TableView fx:id="carTable" prefHeight="395.0" prefWidth="1120.0">
         <columns>
+            <TableColumn fx:id="logoColumn" text="Logo" /> <!-- Nuova colonna per il logo -->
             <TableColumn fx:id="manufacturerColumn" text="Manufacturer" />
             <TableColumn fx:id="modelColumn" text="Model" />
-            <TableColumn fx:id="dailyCostColumn" text="Daily Cost" />
+            <TableColumn fx:id="dailyCostColumn" text="Daily Cost (€)" />
             <TableColumn fx:id="transmissionColumn" text="Transmission" />
             <TableColumn fx:id="seatsColumn" text="Seats" />
             <TableColumn fx:id="sizeColumn" text="Size" />
             <TableColumn fx:id="statusColumn" text="Status" /> <!-- Nuova colonna aggiunta -->
         </columns>
-      <columnResizePolicy>
-         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-      </columnResizePolicy>
+        <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+        </columnResizePolicy>
     </TableView>
     <HBox>
         <TextField fx:id="manufacturerField" promptText="Manufacturer" />

@@ -1,82 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ButtonType?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DialogPane?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.GridPane?>
-
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
-<DialogPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0"
-            xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.carrent.controller.AddCarDialogController">
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<DialogPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0"
+            prefWidth="400.0"
+            xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.carrent.controller.AddCarDialogController">
     <content>
         <GridPane>
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="200.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="200.0"/>
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
             </rowConstraints>
-            <Label text="Manufacturer" />
-            <Label text="Model" GridPane.rowIndex="1" />
-            <Label text="Daily Cost" GridPane.rowIndex="2" />
-            <Label text="Transmission" GridPane.rowIndex="3" />
-            <Label text="Seats" GridPane.rowIndex="4" />
-            <Label text="Size" GridPane.rowIndex="5" />
-            <TextField fx:id="manufacturerField" GridPane.columnIndex="1" />
-            <TextField fx:id="modelField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="dailyCostField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <ComboBox fx:id="transmissionComboBox" GridPane.columnIndex="1" GridPane.rowIndex="3" promptText="Select Transmission">
+            <Label text="Manufacturer"/>
+            <Label text="Model" GridPane.rowIndex="1"/>
+            <Label text="Daily Cost (€)" GridPane.rowIndex="2"/>
+            <Label text="Transmission" GridPane.rowIndex="3"/>
+            <Label text="Seats" GridPane.rowIndex="4"/>
+            <Label text="Size" GridPane.rowIndex="5"/>
+            <TextField fx:id="modelField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <TextField fx:id="dailyCostField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            <ComboBox fx:id="manufacturerComboBox" GridPane.columnIndex="1" promptText="Select Manufacturer">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
-                        <String fx:value="Automatic" />
-                        <String fx:value="Manual" />
+                        <String fx:value="Audi"/>
+                        <String fx:value="BMW"/>
+                        <String fx:value="Mercedes-Benz"/>
+                        <String fx:value="Toyota"/>
+                        <String fx:value="Honda"/>
+                        <String fx:value="Fiat"/>
+                        <String fx:value="Ford"/>
+                        <String fx:value="Chevrolet"/>
+                        <String fx:value="Volkswagen"/>
+                        <String fx:value="Nissan"/>
+                        <String fx:value="Hyundai"/>
+                        <String fx:value="Kia"/>
+                        <String fx:value="Mazda"/>
+                        <String fx:value="Subaru"/>
+                        <String fx:value="Volvo"/>
+                        <String fx:value="Porsche"/>
+                        <String fx:value="Ferrari"/>
+                        <String fx:value="Lamborghini"/>
+                        <String fx:value="Maserati"/>
+                        <String fx:value="Jaguar"/>
+                        <String fx:value="Land Rover"/>
+                    </FXCollections>
+                </items>
+            </ComboBox>
+            <ComboBox fx:id="transmissionComboBox" GridPane.columnIndex="1" GridPane.rowIndex="3"
+                      promptText="Select Transmission">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Automatic"/>
+                        <String fx:value="Manual"/>
                     </FXCollections>
                 </items>
             </ComboBox>
             <ComboBox fx:id="seatsComboBox" GridPane.columnIndex="1" GridPane.rowIndex="4" promptText="Select Seats">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
-                        <String fx:value="2" />
-                        <String fx:value="3" />
-                        <String fx:value="4" />
-                        <String fx:value="5" />
-                        <String fx:value="6" />
-                        <String fx:value="7" />
-                        <String fx:value="8" />
-                        <String fx:value="9" />
+                        <String fx:value="2"/>
+                        <String fx:value="3"/>
+                        <String fx:value="4"/>
+                        <String fx:value="5"/>
+                        <String fx:value="6"/>
+                        <String fx:value="7"/>
+                        <String fx:value="8"/>
+                        <String fx:value="9"/>
                     </FXCollections>
                 </items>
             </ComboBox>
             <ComboBox fx:id="sizeComboBox" GridPane.columnIndex="1" GridPane.rowIndex="5" promptText="Select Size">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
-                        <String fx:value="Small" />
-                        <String fx:value="Compact" />
-                        <String fx:value="Midsize" />
-                        <String fx:value="Full-size" />
-                        <String fx:value="SUV" />
-                        <String fx:value="Van" />
-                        <String fx:value="Truck" />
-                        <String fx:value="Crossover" />
-                        <String fx:value="Convertible" />
-                        <String fx:value="Luxury" />
+                        <String fx:value="Small"/>
+                        <String fx:value="Compact"/>
+                        <String fx:value="Midsize"/>
+                        <String fx:value="Full-size"/>
+                        <String fx:value="SUV"/>
+                        <String fx:value="Van"/>
+                        <String fx:value="Truck"/>
+                        <String fx:value="Crossover"/>
+                        <String fx:value="Convertible"/>
+                        <String fx:value="Luxury"/>
                     </FXCollections>
                 </items>
             </ComboBox>
         </GridPane>
     </content>
-    <ButtonType fx:constant="CANCEL" />
-    <ButtonType fx:constant="OK" />
+    <ButtonType fx:constant="CANCEL"/>
+    <ButtonType fx:constant="OK"/>
 </DialogPane>

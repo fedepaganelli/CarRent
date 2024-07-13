@@ -9,6 +9,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -32,6 +34,8 @@ public class Controller {
     private TableColumn<Car, String> sizeColumn;
     @FXML
     private TableColumn<Car, String> statusColumn; // Nuova colonna di stato
+    @FXML
+    private TableColumn<Car, ImageView> logoColumn; // Nuova colonna per il logo
     @FXML
     private TextField manufacturerField;
     @FXML
@@ -60,7 +64,29 @@ public class Controller {
             return new ReadOnlyStringWrapper(isRented ? "Rented" : "Available");
         });
 
+        // Configura la colonna logoColumn per mostrare le immagini
+        logoColumn.setCellValueFactory(new PropertyValueFactory<>("logo"));
+        logoColumn.setCellFactory(column -> new TableCell<Car, ImageView>() {
+            private final ImageView imageView = new ImageView();
+
+            @Override
+            protected void updateItem(ImageView item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setGraphic(null);
+                } else {
+                    imageView.setImage(item.getImage());
+                    imageView.setFitWidth(50);
+                    imageView.setFitHeight(50);
+                    setGraphic(imageView);
+                }
+            }
+        });
+
         carTable.setItems(carList);
+
+        // Aggiungi macchine di default
+        addDefaultCars();
 
         // Aggiungi un listener per gestire la selezione della riga nella tabella
         carTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -75,6 +101,22 @@ public class Controller {
             }
         });
     }
+
+
+    // metodo per aggiungere le macchine di default nella lista
+    private void addDefaultCars() {
+        carList.add(new Car("Audi", "A4", 50.0, "Automatic", 5, "Medium", getLogoPathForManufacturer("audi")));
+        carList.add(new Car("BMW", "X3", 60.0, "Automatic", 5, "Large", getLogoPathForManufacturer("bmw")));
+        carList.add(new Car("Mercedes-Benz", "C-Class", 55.0, "Automatic", 5, "Medium", getLogoPathForManufacturer("mercedes-benz")));
+        carList.add(new Car("Toyota", "Camry", 45.0, "Automatic", 5, "Medium", getLogoPathForManufacturer("toyota")));
+        carList.add(new Car("Honda", "Accord", 45.0, "Automatic", 5, "Medium", getLogoPathForManufacturer("honda")));
+        carList.add(new Car("Ford", "Mustang", 70.0, "Automatic", 4, "Medium", getLogoPathForManufacturer("ford")));
+        carList.add(new Car("Chevrolet", "Camaro", 65.0, "Automatic", 4, "Medium", getLogoPathForManufacturer("chevrolet")));
+        carList.add(new Car("Volkswagen", "Golf", 40.0, "Manual", 5, "Small", getLogoPathForManufacturer("volkswagen")));
+        carList.add(new Car("Nissan", "Altima", 50.0, "Automatic", 5, "Medium", getLogoPathForManufacturer("nissan")));
+        carList.add(new Car("Hyundai", "Sonata", 45.0, "Automatic", 5, "Medium", getLogoPathForManufacturer("hyundai")));
+    }
+
 
     @FXML
     private void handleAddCar() {
@@ -104,9 +146,10 @@ public class Controller {
                 String transmission = controller.getTransmission();
                 int seats = controller.getSeats();
                 String size = controller.getSize();
+                String logoPath = getLogoPathForManufacturer(manufacturer);
 
                 // Crea un oggetto Car con i dati ottenuti
-                Car car = new Car(manufacturer, model, dailyCost, transmission, seats, size);
+                Car car = new Car(manufacturer, model, dailyCost, transmission, seats, size, logoPath);
 
                 // Aggiungi l'auto alla lista e aggiorna la TableView
                 carList.add(car);
@@ -123,6 +166,55 @@ public class Controller {
         } catch (IOException e) {
             e.printStackTrace();
             // Gestione dell'errore nel caricamento del dialogo
+        }
+    }
+
+    private String getLogoPathForManufacturer(String manufacturer) {
+        switch (manufacturer.toLowerCase()) {
+            case "audi":
+                return "/com/carrent/icons/audi.png";
+            case "bmw":
+                return "/com/carrent/icons/bmw.png";
+            case "mercedes-benz":
+                return "/com/carrent/icons/mercedes-benz.png";
+            case "toyota":
+                return "/com/carrent/icons/toyota.png";
+            case "honda":
+                return "/com/carrent/icons/honda.png";
+            case "fiat":
+                return "/com/carrent/icons/fiat.png";
+            case "ford":
+                return "/com/carrent/icons/ford.png";
+            case "chevrolet":
+                return "/com/carrent/icons/chevrolet.png";
+            case "volkswagen":
+                return "/com/carrent/icons/volkswagen.png";
+            case "nissan":
+                return "/com/carrent/icons/nissan.png";
+            case "hyundai":
+                return "/com/carrent/icons/hyundai.png";
+            case "kia":
+                return "/com/carrent/icons/kia.png";
+            case "mazda":
+                return "/com/carrent/icons/mazda.png";
+            case "subaru":
+                return "/com/carrent/icons/subaru.png";
+            case "volvo":
+                return "/com/carrent/icons/volvo.png";
+            case "porsche":
+                return "/com/carrent/icons/porsche.png";
+            case "ferrari":
+                return "/com/carrent/icons/ferrari.png";
+            case "lamborghini":
+                return "/com/carrent/icons/lamborghini.png";
+            case "maserati":
+                return "/com/carrent/icons/maserati.png";
+            case "jaguar":
+                return "/com/carrent/icons/jaguar.png";
+            case "land rover":
+                return "/com/carrent/icons/land_rover.png";
+            default:
+                return "/com/carrent/icons/default_logo.png";
         }
     }
 

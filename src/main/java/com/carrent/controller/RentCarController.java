@@ -89,8 +89,15 @@ public class RentCarController {
                 System.out.println("Car is already rented.");
                 // Puoi aggiungere un messaggio per informare l'utente
             } else {
-                System.out.println("Renting car: " + selectedCar.getManufacturer() + " " + selectedCar.getModel() +
-                        " from " + startDate + " to " + endDate);
+                // Calcola il costo totale del noleggio
+                double dailyCost = selectedCar.getDailyCost();
+                int numberOfDays = (int) startDate.until(endDate).getDays() + 1; // Include anche il giorno di inizio
+                double totalCost = dailyCost * numberOfDays;
+
+                // Stampa il costo totale del noleggio
+                System.out.println("Total rental cost for " + selectedCar.getManufacturer() + " " + selectedCar.getModel() +
+                        " from " + startDate + " to " + endDate + ": €" + totalCost);
+
                 selectedCar.setRented(true);
                 rentClicked = true;
                 dialogStage.close();
