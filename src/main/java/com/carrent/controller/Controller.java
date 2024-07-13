@@ -1,6 +1,7 @@
 package com.carrent.controller;
 
 import com.carrent.model.Car;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -30,6 +31,8 @@ public class Controller {
     @FXML
     private TableColumn<Car, String> sizeColumn;
     @FXML
+    private TableColumn<Car, String> statusColumn; // Nuova colonna di stato
+    @FXML
     private TextField manufacturerField;
     @FXML
     private TextField modelField;
@@ -52,6 +55,10 @@ public class Controller {
         transmissionColumn.setCellValueFactory(new PropertyValueFactory<>("transmission"));
         seatsColumn.setCellValueFactory(new PropertyValueFactory<>("seats"));
         sizeColumn.setCellValueFactory(new PropertyValueFactory<>("size"));
+        statusColumn.setCellValueFactory(cellData -> {
+            boolean isRented = cellData.getValue().isRented();
+            return new ReadOnlyStringWrapper(isRented ? "Rented" : "Available");
+        });
 
         carTable.setItems(carList);
 
@@ -121,37 +128,41 @@ public class Controller {
 
     @FXML
     private void handleRentCar() {
-        try {
-            // Rimuovi le macchine dalla lista delle auto disponibili (se necessario)
-            // Esempio: carList.clear();
+        Car selectedCar = carTable.getSelectionModel().getSelectedItem();
+        if (selectedCar != null && !selectedCar.isRented()) {
+            try {
+                // Carica il file FXML del dialogo di noleggio
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("RentCar.fxml"));
+                VBox rentCarPane = loader.load();
 
-            // Carica il file FXML del dialogo di noleggio
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("RentCar.fxml"));
-            VBox rentCarPane = loader.load();
+                // Crea una nuova finestra di dialogo
+                Stage rentCarStage = new Stage();
+                rentCarStage.setTitle("Rent Car");
+                rentCarStage.initOwner(carTable.getScene().getWindow()); // Imposta la finestra principale come proprietaria
+                rentCarStage.setScene(new Scene(rentCarPane));
 
-            // Crea una nuova finestra di dialogo
-            Stage rentCarStage = new Stage();
-            rentCarStage.setTitle("Rent Car");
-            rentCarStage.initOwner(carTable.getScene().getWindow()); // Imposta la finestra principale come proprietaria
-            rentCarStage.setScene(new Scene(rentCarPane));
+                // Ottieni il controller del dialogo di noleggio e passagli l'auto selezionata
+                RentCarController rentCarController = loader.getController();
+                rentCarController.setDialogStage(rentCarStage);
+                rentCarController.setSelectedCar(selectedCar);
 
-            // Ottieni il controller del dialogo di noleggio e passagli l'auto selezionata
-            RentCarController rentCarController = loader.getController();
-            rentCarController.setDialogStage(rentCarStage);
-            rentCarController.setSelectedCar(carTable.getSelectionModel().getSelectedItem());
+                // Mostra il dialogo e attendi che l'utente interagisca
+                rentCarStage.showAndWait();
 
-            // Mostra il dialogo e attendi che l'utente interagisca
-            rentCarStage.showAndWait();
+                // Se l'utente ha confermato il noleggio, gestisci di conseguenza
+                if (rentCarController.isRentClicked()) {
+                    // Imposta lo stato dell'auto come noleggiata
+                    selectedCar.setRented(true);
+                    carTable.refresh(); // Aggiorna la TableView per mostrare il nuovo stato
+                    System.out.println("Car rented successfully!");
+                }
 
-            // Se l'utente ha confermato il noleggio, gestisci di conseguenza
-            if (rentCarController.isRentClicked()) {
-                // Esempio di output (da personalizzare con la tua logica di noleggio)
-                System.out.println("Car rented successfully!");
+            } catch (IOException e) {
+                e.printStackTrace();
+                // Gestione dell'errore nel caricamento del dialogo
             }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            // Gestione dell'errore nel caricamento del dialogo
+        } else {
+            System.out.println("Please select an available car to rent.");
         }
     }
 }
