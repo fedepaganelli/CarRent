@@ -33,9 +33,9 @@ public class Controller {
     @FXML
     private TableColumn<Car, String> sizeColumn;
     @FXML
-    private TableColumn<Car, String> statusColumn; // Nuova colonna di stato
+    private TableColumn<Car, String> statusColumn;
     @FXML
-    private TableColumn<Car, ImageView> logoColumn; // Nuova colonna per il logo
+    private TableColumn<Car, ImageView> logoColumn;
     @FXML
     private TextField manufacturerField;
     @FXML
@@ -48,6 +48,8 @@ public class Controller {
     private TextField seatsField;
     @FXML
     private TextField sizeField;
+    @FXML
+    private ImageView logoImageView;
 
     private final ObservableList<Car> carList = FXCollections.observableArrayList();
 
@@ -63,6 +65,8 @@ public class Controller {
             boolean isRented = cellData.getValue().isRented();
             return new ReadOnlyStringWrapper(isRented ? "Rented" : "Available");
         });
+        Image logoImage = new Image(getClass().getResourceAsStream("/com/carrent/icons/car_rental_logo.jpeg"));
+        logoImageView.setImage(logoImage);
 
         // Configura la colonna logoColumn per mostrare le immagini
         logoColumn.setCellValueFactory(new PropertyValueFactory<>("logo"));
@@ -170,52 +174,30 @@ public class Controller {
     }
 
     private String getLogoPathForManufacturer(String manufacturer) {
-        switch (manufacturer.toLowerCase()) {
-            case "audi":
-                return "/com/carrent/icons/audi.png";
-            case "bmw":
-                return "/com/carrent/icons/bmw.png";
-            case "mercedes-benz":
-                return "/com/carrent/icons/mercedes-benz.png";
-            case "toyota":
-                return "/com/carrent/icons/toyota.png";
-            case "honda":
-                return "/com/carrent/icons/honda.png";
-            case "fiat":
-                return "/com/carrent/icons/fiat.png";
-            case "ford":
-                return "/com/carrent/icons/ford.png";
-            case "chevrolet":
-                return "/com/carrent/icons/chevrolet.png";
-            case "volkswagen":
-                return "/com/carrent/icons/volkswagen.png";
-            case "nissan":
-                return "/com/carrent/icons/nissan.png";
-            case "hyundai":
-                return "/com/carrent/icons/hyundai.png";
-            case "kia":
-                return "/com/carrent/icons/kia.png";
-            case "mazda":
-                return "/com/carrent/icons/mazda.png";
-            case "subaru":
-                return "/com/carrent/icons/subaru.png";
-            case "volvo":
-                return "/com/carrent/icons/volvo.png";
-            case "porsche":
-                return "/com/carrent/icons/porsche.png";
-            case "ferrari":
-                return "/com/carrent/icons/ferrari.png";
-            case "lamborghini":
-                return "/com/carrent/icons/lamborghini.png";
-            case "maserati":
-                return "/com/carrent/icons/maserati.png";
-            case "jaguar":
-                return "/com/carrent/icons/jaguar.png";
-            case "land rover":
-                return "/com/carrent/icons/land_rover.png";
-            default:
-                return "/com/carrent/icons/default_logo.png";
-        }
+        return switch (manufacturer.toLowerCase()) {
+            case "audi" -> "/com/carrent/icons/audi.png";
+            case "bmw" -> "/com/carrent/icons/bmw.png";
+            case "mercedes-benz" -> "/com/carrent/icons/mercedes-benz.png";
+            case "toyota" -> "/com/carrent/icons/toyota.png";
+            case "honda" -> "/com/carrent/icons/honda.png";
+            case "fiat" -> "/com/carrent/icons/fiat.png";
+            case "ford" -> "/com/carrent/icons/ford.png";
+            case "chevrolet" -> "/com/carrent/icons/chevrolet.png";
+            case "volkswagen" -> "/com/carrent/icons/volkswagen.png";
+            case "nissan" -> "/com/carrent/icons/nissan.png";
+            case "hyundai" -> "/com/carrent/icons/hyundai.png";
+            case "kia" -> "/com/carrent/icons/kia.png";
+            case "mazda" -> "/com/carrent/icons/mazda.png";
+            case "subaru" -> "/com/carrent/icons/subaru.png";
+            case "volvo" -> "/com/carrent/icons/volvo.png";
+            case "porsche" -> "/com/carrent/icons/porsche.png";
+            case "ferrari" -> "/com/carrent/icons/ferrari.png";
+            case "lamborghini" -> "/com/carrent/icons/lamborghini.png";
+            case "maserati" -> "/com/carrent/icons/maserati.png";
+            case "jaguar" -> "/com/carrent/icons/jaguar.png";
+            case "land rover" -> "/com/carrent/icons/land_rover.png";
+            default -> "/com/carrent/icons/default_logo.png";
+        };
     }
 
     @FXML
@@ -302,5 +284,14 @@ public class Controller {
         }
 
         carTable.setItems(filteredList);
+
+        // Pulisci i campi di input
+        manufacturerField.clear();
+        modelField.clear();
+        dailyCostField.clear();
+        transmissionField.clear();
+        seatsField.clear();
+        sizeField.clear();
+
     }
 }
