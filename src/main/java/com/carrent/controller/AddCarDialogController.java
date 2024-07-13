@@ -83,4 +83,3 @@ public class AddCarDialogController {
         return true; // Replace with actual validation
     }
 }
-

@@ -82,4 +82,3 @@ public class Car {
         return manufacturer + " " + model;
     }
 }
-

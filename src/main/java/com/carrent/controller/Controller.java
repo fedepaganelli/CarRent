@@ -45,7 +45,7 @@ public class Controller {
     @FXML
     private TextField sizeField;
 
-    private ObservableList<Car> carList = FXCollections.observableArrayList();
+    private final ObservableList<Car> carList = FXCollections.observableArrayList();
 
     @FXML
     private void initialize() {
@@ -164,5 +164,51 @@ public class Controller {
         } else {
             System.out.println("Please select an available car to rent.");
         }
+    }
+
+    @FXML
+    private void handleSearchCar() {
+        String manufacturer = manufacturerField.getText().toLowerCase();
+        String model = modelField.getText().toLowerCase();
+        String dailyCostString = dailyCostField.getText().toLowerCase();
+        String transmission = transmissionField.getText().toLowerCase();
+        String seatsString = seatsField.getText().toLowerCase();
+        String size = sizeField.getText().toLowerCase();
+
+        double dailyCost = -1; // Valore di default per indicare che il filtro non è stato applicato
+        int seats = -1; // Valore di default per indicare che il filtro non è stato applicato
+
+        try {
+            if (!dailyCostString.isEmpty()) {
+                dailyCost = Double.parseDouble(dailyCostString);
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Error: Daily Cost is not a valid value.");
+            // Gestisci l'errore (ad es. mostra un messaggio di errore all'utente)
+        }
+
+        try {
+            if (!seatsString.isEmpty()) {
+                seats = Integer.parseInt(seatsString);
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Error: Seats is not a valid value.");
+            // Gestisci l'errore (ad es. mostra un messaggio di errore all'utente)
+        }
+
+        ObservableList<Car> filteredList = FXCollections.observableArrayList();
+
+        for (Car car : carList) {
+            if ((manufacturer.isEmpty() || car.getManufacturer().toLowerCase().contains(manufacturer)) &&
+                    (model.isEmpty() || car.getModel().toLowerCase().contains(model)) &&
+                    (dailyCost == -1 || car.getDailyCost() <= dailyCost) &&
+                    (transmission.isEmpty() || car.getTransmission().toLowerCase().contains(transmission)) &&
+                    (seats == -1 || car.getSeats() == seats) &&
+                    (size.isEmpty() || car.getSize().toLowerCase().contains(size))) {
+                filteredList.add(car);
+            }
+        }
+
+        carTable.setItems(filteredList);
     }
 }
