@@ -2,6 +2,7 @@ package com.carrent.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -21,13 +22,13 @@ public class AddCarDialogController {
     private TextField dailyCostField;
 
     @FXML
-    private TextField transmissionField;
+    private ComboBox<String> transmissionComboBox;
 
     @FXML
-    private TextField seatsField;
+    private ComboBox<String> seatsComboBox;
 
     @FXML
-    private TextField sizeField;
+    private ComboBox<String> sizeComboBox;
 
     private Stage dialogStage;
     private boolean okClicked = false;
@@ -39,7 +40,6 @@ public class AddCarDialogController {
     public boolean isOkClicked() {
         return okClicked;
     }
-
 
     @FXML
     private void handleOk() {
@@ -67,15 +67,15 @@ public class AddCarDialogController {
     }
 
     public String getTransmission() {
-        return transmissionField.getText();
+        return transmissionComboBox.getValue();
     }
 
     public int getSeats() {
-        return Integer.parseInt(seatsField.getText());
+        return Integer.parseInt(seatsComboBox.getValue());
     }
 
     public String getSize() {
-        return sizeField.getText();
+        return sizeComboBox.getValue();
     }
 
     private boolean validateInput() {
