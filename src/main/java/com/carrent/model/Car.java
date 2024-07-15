@@ -1,10 +1,7 @@
 package com.carrent.model;
 
-
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
-
 
 public class Car {
     private String manufacturer;
@@ -95,7 +92,4 @@ public class Car {
     public String toString() {
         return manufacturer + " " + model;
     }
-
-
-
 }

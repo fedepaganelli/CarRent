@@ -5,27 +5,24 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.carrent.controller.RentCarController"
-      alignment="CENTER"
-      prefHeight="400.0" prefWidth="600.0">
+<VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" spacing="20.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.carrent.controller.RentCarController">
 
     <padding>
-        <Insets top="20" right="20" bottom="20" left="20"/>
+        <Insets bottom="20" left="20" right="20" top="20" />
     </padding>
 
-    <Label text="Select Car"/>
-    <ComboBox fx:id="carComboBox" promptText="Select Car"/>
+    <Label text="Select Car" VBox.vgrow="ALWAYS" />
 
-    <Label text="Rental Period"/>
-    <HBox spacing="10">
-        <DatePicker fx:id="startDatePicker" promptText="Start Date"/>
-        <DatePicker fx:id="endDatePicker" promptText="End Date"/>
-    </HBox>
+    <ComboBox fx:id="carComboBox" promptText="Select Car" VBox.vgrow="ALWAYS">
+      <VBox.margin>
+         <Insets bottom="35.0" />
+      </VBox.margin></ComboBox>
 
-    <Button text="Rent Car" onAction="#handleRentCar"/>
+    <Label text="Rental Period" VBox.vgrow="ALWAYS" />
+     <DatePicker fx:id="startDatePicker" promptText="Start Date" />
+     <DatePicker fx:id="endDatePicker" promptText="End Date" />
+
+    <Button onAction="#handleRentCar" text="Rent Car" VBox.vgrow="ALWAYS" />
 </VBox>

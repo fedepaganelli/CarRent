@@ -203,6 +203,9 @@ public class Controller {
                 rentCarStage.initOwner(carTable.getScene().getWindow()); // Imposta la finestra principale come proprietaria
                 rentCarStage.setScene(new Scene(rentCarPane));
 
+                // Disabilita i pulsanti di massimizzazione
+                rentCarStage.setResizable(false);
+
                 // Ottieni il controller del dialogo di noleggio e passagli l'auto selezionata
                 RentCarController rentCarController = loader.getController();
                 rentCarController.setDialogStage(rentCarStage);
