@@ -35,25 +35,25 @@
                     <FXCollections fx:factory="observableArrayList">
                         <String fx:value="Audi"/>
                         <String fx:value="BMW"/>
-                        <String fx:value="Mercedes-Benz"/>
-                        <String fx:value="Toyota"/>
-                        <String fx:value="Honda"/>
+                        <String fx:value="Chevrolet"/>
+                        <String fx:value="Ferrari"/>
                         <String fx:value="Fiat"/>
                         <String fx:value="Ford"/>
-                        <String fx:value="Chevrolet"/>
-                        <String fx:value="Volkswagen"/>
-                        <String fx:value="Nissan"/>
+                        <String fx:value="Honda"/>
                         <String fx:value="Hyundai"/>
-                        <String fx:value="Kia"/>
-                        <String fx:value="Mazda"/>
-                        <String fx:value="Subaru"/>
-                        <String fx:value="Volvo"/>
-                        <String fx:value="Porsche"/>
-                        <String fx:value="Ferrari"/>
-                        <String fx:value="Lamborghini"/>
-                        <String fx:value="Maserati"/>
                         <String fx:value="Jaguar"/>
+                        <String fx:value="Kia"/>
+                        <String fx:value="Lamborghini"/>
                         <String fx:value="Land Rover"/>
+                        <String fx:value="Maserati"/>
+                        <String fx:value="Mazda"/>
+                        <String fx:value="Mercedes-Benz"/>
+                        <String fx:value="Nissan"/>
+                        <String fx:value="Porsche"/>
+                        <String fx:value="Subaru"/>
+                        <String fx:value="Toyota"/>
+                        <String fx:value="Volkswagen"/>
+                        <String fx:value="Volvo"/>
                     </FXCollections>
                 </items>
             </ComboBox>
