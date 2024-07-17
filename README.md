@@ -11,20 +11,6 @@ CarRent is a JavaFX application for managing car rentals. The application allows
 - View the status of cars (available or rented).
 - Display car logos in the table (N.B.:we have limited the car manufacturers to 20).
 
-## Usage
-
-1. **Add a New Car:**
-   - Click on the "Add Car" button and fill in the required details in the dialog.
-   - Press "OK" to add the car to the list.
-
-2. **Search Cars:**
-   - Use the text fields at the bottom of the table to filter available cars.
-
-3. **Rent a Car:**
-   - Select an available car from the table.
-   - Click on the "Rent Car" button and specify the start and end dates of the rental period.
-   - Press "OK" to confirm the rental and display the total rental cost in the terminal.
-
 ## Classes
 
 ### Car
@@ -42,6 +28,20 @@ Manages the dialog window for adding new cars and validates user input thanks to
 ### RentCarController
 
 Handles the renting process for cars. Allows users to select a car, specify rental dates, and calculates the total rental cost. Communicates with the main Controller to update the rental status of cars.
+
+## Usage
+
+1. **Add a New Car:**
+   - Click on the "Add Car" button and fill in the required details in the dialog.
+   - Press "OK" to add the car to the list.
+
+2. **Search Cars:**
+   - Use the text fields at the bottom of the table to filter available cars.
+
+3. **Rent a Car:**
+   - Select an available car from the table.
+   - Click on the "Rent Car" button and specify the start and end dates of the rental period.
+   - Press "OK" to confirm the rental and display the total rental cost in the terminal.
 
 ## Authors
 
