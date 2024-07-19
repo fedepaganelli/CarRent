@@ -68,7 +68,6 @@ public class Controller {
         Image logoImage = new Image(getClass().getResourceAsStream("/com/carrent/icons/car_rental_logo.jpeg"));
         logoImageView.setImage(logoImage);
 
-        // Configura la colonna logoColumn per mostrare le immagini
         logoColumn.setCellValueFactory(new PropertyValueFactory<>("logo"));
         logoColumn.setCellFactory(column -> new TableCell<Car, ImageView>() {
             private final ImageView imageView = new ImageView();
@@ -89,13 +88,11 @@ public class Controller {
 
         carTable.setItems(carList);
 
-        // Aggiungi macchine di default
         addDefaultCars();
 
     }
 
 
-    // metodo per aggiungere le macchine di default nella lista
     private void addDefaultCars() {
         carList.add(new Car("Audi", "A4", 50.0, "Automatic", 5, "Medium", getLogoPathForManufacturer("audi")));
         carList.add(new Car("BMW", "X3", 60.0, "Automatic", 5, "Large", getLogoPathForManufacturer("bmw")));
@@ -113,25 +110,21 @@ public class Controller {
     @FXML
     private void handleAddCar() {
         try {
-            // Carica il file FXML del dialogo
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("AddCarDialog.fxml"));
             DialogPane dialogPane = loader.load();
 
-            // Crea un nuovo dialogo
             Dialog<ButtonType> dialog = new Dialog<>();
             dialog.setDialogPane(dialogPane);
 
-            // Ottieni il controller del dialogo e impostane la finestra di dialogo
             AddCarDialogController controller = loader.getController();
             Stage stage = (Stage) dialogPane.getScene().getWindow();
             controller.setDialogStage(stage);
 
-            // Mostra il dialogo e attendi la risposta
             Optional<ButtonType> result = dialog.showAndWait();
 
-            // Gestisci la risposta
             if (result.isPresent() && result.get() == ButtonType.OK) {
-                // Esegui l'aggiunta dell'auto usando i dati dal controller del dialogo
+
                 String manufacturer = controller.getManufacturer();
                 String model = controller.getModel();
                 double dailyCost = controller.getDailyCost();
@@ -140,13 +133,10 @@ public class Controller {
                 String size = controller.getSize();
                 String logoPath = getLogoPathForManufacturer(manufacturer);
 
-                // Crea un oggetto Car con i dati ottenuti
                 Car car = new Car(manufacturer, model, dailyCost, transmission, seats, size, logoPath);
 
-                // Aggiungi l'auto alla lista e aggiorna la TableView
                 carList.add(car);
 
-                // Pulisci i campi di input
                 manufacturerField.clear();
                 modelField.clear();
                 dailyCostField.clear();
@@ -157,7 +147,6 @@ public class Controller {
 
         } catch (IOException e) {
             e.printStackTrace();
-            // Gestione dell'errore nel caricamento del dialogo
         }
     }
 
@@ -193,38 +182,30 @@ public class Controller {
         Car selectedCar = carTable.getSelectionModel().getSelectedItem();
         if (selectedCar != null && !selectedCar.isRented()) {
             try {
-                // Carica il file FXML del dialogo di noleggio
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("RentCar.fxml"));
                 VBox rentCarPane = loader.load();
 
-                // Crea una nuova finestra di dialogo
                 Stage rentCarStage = new Stage();
                 rentCarStage.setTitle("Rent Car");
-                rentCarStage.initOwner(carTable.getScene().getWindow()); // Imposta la finestra principale come proprietaria
+                rentCarStage.initOwner(carTable.getScene().getWindow());
                 rentCarStage.setScene(new Scene(rentCarPane));
 
-                // Disabilita i pulsanti di massimizzazione
                 rentCarStage.setResizable(false);
 
-                // Ottieni il controller del dialogo di noleggio e passagli l'auto selezionata
                 RentCarController rentCarController = loader.getController();
                 rentCarController.setDialogStage(rentCarStage);
                 rentCarController.setSelectedCar(selectedCar);
 
-                // Mostra il dialogo e attendi che l'utente interagisca
                 rentCarStage.showAndWait();
 
-                // Se l'utente ha confermato il noleggio, gestisci di conseguenza
                 if (rentCarController.isRentClicked()) {
-                    // Imposta lo stato dell'auto come noleggiata
                     selectedCar.setRented(true);
-                    carTable.refresh(); // Aggiorna la TableView per mostrare il nuovo stato
+                    carTable.refresh();
                     System.out.println("Car rented successfully!");
                 }
 
             } catch (IOException e) {
                 e.printStackTrace();
-                // Gestione dell'errore nel caricamento del dialogo
             }
         } else {
             System.out.println("Please select an available car to rent.");
@@ -240,8 +221,8 @@ public class Controller {
         String seatsString = seatsField.getText().toLowerCase();
         String size = sizeField.getText().toLowerCase();
 
-        double dailyCost = -1; // Valore di default per indicare che il filtro non è stato applicato
-        int seats = -1; // Valore di default per indicare che il filtro non è stato applicato
+        double dailyCost = -1;
+        int seats = -1;
 
         try {
             if (!dailyCostString.isEmpty()) {
@@ -249,7 +230,6 @@ public class Controller {
             }
         } catch (NumberFormatException e) {
             System.out.println("Error: Daily Cost is not a valid value.");
-            // Gestisci l'errore (ad es. mostra un messaggio di errore all'utente)
         }
 
         try {
@@ -258,7 +238,6 @@ public class Controller {
             }
         } catch (NumberFormatException e) {
             System.out.println("Error: Seats is not a valid value.");
-            // Gestisci l'errore (ad es. mostra un messaggio di errore all'utente)
         }
 
         ObservableList<Car> filteredList = FXCollections.observableArrayList();
@@ -276,7 +255,6 @@ public class Controller {
 
         carTable.setItems(filteredList);
 
-        // Pulisci i campi di input
         manufacturerField.clear();
         modelField.clear();
         dailyCostField.clear();

@@ -1,11 +1,10 @@
 package com.carrent.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DialogPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 public class AddCarDialogController {
 
@@ -79,7 +78,6 @@ public class AddCarDialogController {
     }
 
     private boolean validateInput() {
-        // Implement your validation logic here
-        return true; // Replace with actual validation
+        return true;    //il progetto non prevede la validazione dell'input
     }
 }
