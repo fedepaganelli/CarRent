@@ -3,13 +3,10 @@ package com.carrent.controller;
 import com.carrent.model.Car;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.util.Callback;
 import javafx.stage.Stage;
-
+import javafx.event.ActionEvent;
 import java.time.LocalDate;
 
 public class RentCarController {
@@ -23,10 +20,11 @@ public class RentCarController {
     @FXML
     private DatePicker endDatePicker;
 
+    @FXML
+    private Label errorLabel; // New label for displaying errors
+
     private Stage dialogStage;
     private boolean rentClicked = false;
-
-    private ObservableList<Car> availableCars;
 
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
@@ -37,8 +35,7 @@ public class RentCarController {
     }
 
     public void setAvailableCars(ObservableList<Car> cars) {
-        this.availableCars = cars;
-        carComboBox.setItems(availableCars);
+        carComboBox.setItems(cars);
         configureCarComboBox();
     }
 
@@ -78,15 +75,13 @@ public class RentCarController {
     }
 
     @FXML
-    private void handleRentCar() {
+    private void handleRentCar(ActionEvent event) {
         LocalDate startDate = startDatePicker.getValue();
         LocalDate endDate = endDatePicker.getValue();
-
-        if (startDate != null && endDate != null && carComboBox.getValue() != null) {
-            Car selectedCar = carComboBox.getValue();
-
+        Car selectedCar = carComboBox.getValue();
+        if (validateInput()) {
             if (selectedCar.isRented()) {
-                System.out.println("Car is already rented.");
+                errorLabel.setText("Car is already rented.");
             } else {
                 double dailyCost = selectedCar.getDailyCost();
                 int numberOfDays = (int) startDate.until(endDate).getDays() + 1;
@@ -100,7 +95,50 @@ public class RentCarController {
                 dialogStage.close();
             }
         } else {
-            System.out.println("Please select a car and specify both start and end dates.");
+            event.consume();
         }
+    }
+
+    private boolean validateInput() {
+        String errorMessage = "";
+        boolean isValid = true;
+
+        if (startDatePicker.getValue() == null) {
+            errorMessage += "No start date specified!\n";
+            startDatePicker.setStyle("-fx-border-color: red;");
+            isValid = false;
+        } else {
+            startDatePicker.setStyle("");
+        }
+
+        if (endDatePicker.getValue() == null) {
+            errorMessage += "No end date specified!\n";
+            endDatePicker.setStyle("-fx-border-color: red;");
+            isValid = false;
+        } else {
+            endDatePicker.setStyle("");
+        }
+
+        if((startDatePicker.getValue() != null && endDatePicker.getValue() != null) && (startDatePicker.getValue().isBefore(LocalDate.now()) || startDatePicker.getValue().isAfter(endDatePicker.getValue()))) {
+            errorMessage += "Invalid dates!\n";
+            startDatePicker.setStyle("-fx-border-color: red;");
+            endDatePicker.setStyle("-fx-border-color: red;");
+            isValid = false;
+        } else if (startDatePicker.getValue() == null){
+            startDatePicker.setStyle("-fx-border-color: red;");
+        } else if (endDatePicker.getValue() == null){
+            endDatePicker.setStyle("-fx-border-color: red;");
+        } else {
+            startDatePicker.setStyle("");
+            endDatePicker.setStyle("");
+        }
+
+        if (!isValid) {
+            errorLabel.setText(errorMessage);
+        } else {
+            errorLabel.setText("");
+        }
+
+        return isValid;
     }
 }

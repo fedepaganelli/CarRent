@@ -1,15 +1,11 @@
 package com.carrent.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 
 public class AddCarDialogController {
-
-    @FXML
-    private DialogPane dialogPane;
 
     @FXML
     private TextField modelField;
@@ -29,28 +25,27 @@ public class AddCarDialogController {
     @FXML
     private ComboBox<String> sizeComboBox;
 
+    @FXML
+    private Label errorLabel;
+
     private Stage dialogStage;
-    private boolean okClicked = false;
 
-    public void setDialogStage(Stage dialogStage) {
+    @FXML
+    public void setDialogStage(Stage dialogStage, DialogPane dialogPane) {
         this.dialogStage = dialogStage;
-    }
 
-    public boolean isOkClicked() {
-        return okClicked;
+        Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
+        okButton.addEventFilter(ActionEvent.ACTION, this::handleOk);
     }
 
     @FXML
-    private void handleOk() {
+    private void handleOk(ActionEvent event) {
         if (validateInput()) {
-            okClicked = true;
             dialogStage.close();
+        } else {
+            event.consume();
+            errorLabel.setText("Please correct the invalid fields.");
         }
-    }
-
-    @FXML
-    private void handleCancel() {
-        dialogStage.close();
     }
 
     public String getModel() {
@@ -58,7 +53,11 @@ public class AddCarDialogController {
     }
 
     public double getDailyCost() {
-        return Double.parseDouble(dailyCostField.getText());
+        try {
+            return Double.parseDouble(dailyCostField.getText());
+        } catch (NumberFormatException | NullPointerException e){
+            return -1;
+        }
     }
 
     public String getManufacturer() {
@@ -78,6 +77,53 @@ public class AddCarDialogController {
     }
 
     private boolean validateInput() {
-        return true;    //il progetto non prevede la validazione dell'input
+        boolean isValid = true;
+
+        if (modelField.getText() == null || modelField.getText().isEmpty()) {
+            isValid = false;
+            modelField.setStyle("-fx-border-color: red;");
+        } else {
+            modelField.setStyle("");
+        }
+
+
+        if (dailyCostField.getText() == null || dailyCostField.getText().isEmpty() || getDailyCost() < 0) {
+            isValid = false;
+            dailyCostField.setStyle("-fx-border-color: red;");
+        } else {
+            dailyCostField.setStyle("");
+        }
+
+
+        if (manufacturerComboBox.getValue() == null || manufacturerComboBox.getValue().isEmpty()) {
+            isValid = false;
+            manufacturerComboBox.setStyle("-fx-border-color: red;");
+        } else {
+            manufacturerComboBox.setStyle("");
+        }
+
+
+        if (transmissionComboBox.getValue() == null || transmissionComboBox.getValue().isEmpty()) {
+            isValid = false;
+            transmissionComboBox.setStyle("-fx-border-color: red;");
+        } else {
+            transmissionComboBox.setStyle("");
+        }
+
+        if (seatsComboBox.getValue() == null || seatsComboBox.getValue().isEmpty()) {
+            isValid = false;
+            seatsComboBox.setStyle("-fx-border-color: red;");
+        } else {
+            seatsComboBox.setStyle("");
+        }
+
+        if (sizeComboBox.getValue() == null || sizeComboBox.getValue().isEmpty()) {
+            isValid = false;
+            sizeComboBox.setStyle("-fx-border-color: red;");
+        } else {
+            sizeComboBox.setStyle("");
+        }
+
+        return isValid;
     }
 }

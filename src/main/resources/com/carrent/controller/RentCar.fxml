@@ -16,13 +16,17 @@
     <Label text="Select Car" VBox.vgrow="ALWAYS" />
 
     <ComboBox fx:id="carComboBox" promptText="Select Car" VBox.vgrow="ALWAYS">
-      <VBox.margin>
-         <Insets bottom="35.0" />
-      </VBox.margin></ComboBox>
+        <VBox.margin>
+            <Insets bottom="35.0" />
+        </VBox.margin>
+    </ComboBox>
 
     <Label text="Rental Period" VBox.vgrow="ALWAYS" />
-     <DatePicker fx:id="startDatePicker" promptText="Start Date" />
-     <DatePicker fx:id="endDatePicker" promptText="End Date" />
+    <DatePicker fx:id="startDatePicker" promptText="Start Date" />
+    <DatePicker fx:id="endDatePicker" promptText="End Date" />
 
     <Button onAction="#handleRentCar" text="Rent Car" VBox.vgrow="ALWAYS" />
+
+    <Label fx:id="errorLabel" text="" textFill="red" wrapText="true" VBox.vgrow="ALWAYS" /> <!-- New label for errors -->
+
 </VBox>

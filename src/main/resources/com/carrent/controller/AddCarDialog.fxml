@@ -21,6 +21,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
             </rowConstraints>
             <Label text="Manufacturer"/>
             <Label text="Model" GridPane.rowIndex="1"/>
@@ -96,8 +97,9 @@
                     </FXCollections>
                 </items>
             </ComboBox>
+            <Label fx:id="errorLabel" GridPane.columnIndex="1" GridPane.rowIndex="6" textFill="red" />
         </GridPane>
     </content>
-    <ButtonType fx:constant="CANCEL"/>
+    <ButtonType fx:id="cancelButton" fx:constant="CANCEL"/>
     <ButtonType fx:constant="OK"/>
 </DialogPane>
