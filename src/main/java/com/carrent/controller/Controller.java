@@ -69,7 +69,7 @@ public class Controller {
         logoImageView.setImage(logoImage);
 
         logoColumn.setCellValueFactory(new PropertyValueFactory<>("logo"));
-        logoColumn.setCellFactory(column -> new TableCell<Car, ImageView>() {
+        logoColumn.setCellFactory(column -> new TableCell<>() {
             private final ImageView imageView = new ImageView();
 
             @Override

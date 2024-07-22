@@ -1,10 +1,8 @@
 package com.carrent.controller;
 
 import com.carrent.model.Car;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.util.Callback;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import java.time.LocalDate;
@@ -21,7 +19,7 @@ public class RentCarController {
     private DatePicker endDatePicker;
 
     @FXML
-    private Label errorLabel; // New label for displaying errors
+    private Label errorLabel;
 
     private Stage dialogStage;
     private boolean rentClicked = false;
@@ -32,42 +30,6 @@ public class RentCarController {
 
     public boolean isRentClicked() {
         return rentClicked;
-    }
-
-    public void setAvailableCars(ObservableList<Car> cars) {
-        carComboBox.setItems(cars);
-        configureCarComboBox();
-    }
-
-    private void configureCarComboBox() {
-        carComboBox.setCellFactory(new Callback<ListView<Car>, ListCell<Car>>() {
-            @Override
-            public ListCell<Car> call(ListView<Car> param) {
-                return new ListCell<Car>() {
-                    @Override
-                    protected void updateItem(Car car, boolean empty) {
-                        super.updateItem(car, empty);
-                        if (empty || car == null) {
-                            setText(null);
-                        } else {
-                            setText(car.getManufacturer() + " " + car.getModel() + (car.isRented() ? " (Rented)" : ""));
-                        }
-                    }
-                };
-            }
-        });
-
-        carComboBox.setButtonCell(new ListCell<Car>() {
-            @Override
-            protected void updateItem(Car car, boolean empty) {
-                super.updateItem(car, empty);
-                if (empty || car == null) {
-                    setText("Select Car");
-                } else {
-                    setText(car.getManufacturer() + " " + car.getModel() + (car.isRented() ? " (Rented)" : ""));
-                }
-            }
-        });
     }
 
     public void setSelectedCar(Car car) {
@@ -84,7 +46,7 @@ public class RentCarController {
                 errorLabel.setText("Car is already rented.");
             } else {
                 double dailyCost = selectedCar.getDailyCost();
-                int numberOfDays = (int) startDate.until(endDate).getDays() + 1;
+                int numberOfDays = startDate.until(endDate).getDays() + 1;
                 double totalCost = dailyCost * numberOfDays;
 
                 System.out.println("Total rental cost for " + selectedCar.getManufacturer() + " " + selectedCar.getModel() +

@@ -100,6 +100,6 @@
             <Label fx:id="errorLabel" GridPane.columnIndex="1" GridPane.rowIndex="6" textFill="red" />
         </GridPane>
     </content>
-    <ButtonType fx:id="cancelButton" fx:constant="CANCEL"/>
+    <ButtonType fx:constant="CANCEL"/>
     <ButtonType fx:constant="OK"/>
 </DialogPane>
