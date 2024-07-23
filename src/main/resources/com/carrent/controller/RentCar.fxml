@@ -27,6 +27,6 @@
 
     <Button onAction="#handleRentCar" text="Rent Car" VBox.vgrow="ALWAYS" />
 
-    <Label fx:id="errorLabel" textFill="red" wrapText="true" VBox.vgrow="ALWAYS" /> <!-- New label for errors -->
+    <Label fx:id="errorLabel" textFill="red" wrapText="true" VBox.vgrow="ALWAYS" />
 
 </VBox>

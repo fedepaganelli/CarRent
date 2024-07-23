@@ -119,6 +119,7 @@ public class Controller {
 
             AddCarDialogController controller = loader.getController();
             Stage stage = (Stage) dialogPane.getScene().getWindow();
+            stage.setTitle("Add Car");
             controller.setDialogStage(stage, dialogPane);
 
             Optional<ButtonType> result = dialog.showAndWait();

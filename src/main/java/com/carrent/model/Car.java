@@ -30,66 +30,68 @@ public class Car {
         return manufacturer;
     }
 
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
-    }
-
     public String getModel() {
         return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
     }
 
     public double getDailyCost() {
         return dailyCost;
     }
 
-    public void setDailyCost(double dailyCost) {
-        this.dailyCost = dailyCost;
-    }
-
     public String getTransmission() {
         return transmission;
-    }
-
-    public void setTransmission(String transmission) {
-        this.transmission = transmission;
     }
 
     public int getSeats() {
         return seats;
     }
 
-    public void setSeats(int seats) {
-        this.seats = seats;
-    }
-
-
     public String getSize() {
         return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
-    }
-
-    public boolean isRented() {
-        return isRented;
-    }
-
-    public void setRented(boolean rented) {
-        isRented = rented;
     }
 
     public ImageView getLogo() {
         return logo;
     }
 
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public void setDailyCost(double dailyCost) {
+        this.dailyCost = dailyCost;
+    }
+
+    public void setTransmission(String transmission) {
+        this.transmission = transmission;
+    }
+
+    public void setSeats(int seats) {
+        this.seats = seats;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public void setRented(boolean rented) {
+        isRented = rented;
+    }
+
     public void setLogo(ImageView logo) {
         this.logo = logo;
     }
+
+
+    public boolean isRented() {
+        return isRented;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -107,4 +109,5 @@ public class Car {
     public String toString() {
         return manufacturer + " " + model;
     }
+
 }
